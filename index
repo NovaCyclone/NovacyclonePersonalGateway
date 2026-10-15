@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="zjh personal gateway?!">
+<title>个人主页 | Personal Homepage</title>
+
+<style>
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #252b35;
+  --muted: #78818e;
+  --accent: #315b87;
+  --border: #e7eaf0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Microsoft YaHei", sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1050px;
+  margin: auto;
+  padding: 0 28px;
+}
+
+/* 导航栏 */
+
+header {
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+}
+
+nav {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* 主体 */
+
+main {
+  padding-top: 55px;
+  padding-bottom: 70px;
+}
+
+/* 个人信息 */
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  padding: 35px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.avatar {
+  width: 145px;
+  height: 145px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #e9edf2;
+}
+
+.profile h1 {
+  font-size: 30px;
+  margin: 0 0 5px;
+  font-weight: 650;
+}
+
+.subtitle {
+  color: var(--accent);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 620px;
+}
+
+.social {
+  display: flex;
+  gap: 18px;
+  margin-top: 17px;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+/* 内容区 */
+
+section {
+  margin-top: 55px;
+}
+
+.section-title {
+  font-size: 21px;
+  font-weight: 650;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 9px;
+}
+
+/* 兴趣方向 */
+
+.interests {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.interest-card {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.interest-card h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.interest-card p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* 项目 */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.project {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 22px;
+  transition: .2s;
+}
+
+.project:hover {
+  border-color: #9aafc5;
+  transform: translateY(-3px);
+}
+
+.project h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.project p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 15px;
+}
+
+.project-link {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+/* 时间线 */
+
+.timeline {
+  border-left: 2px solid var(--border);
+  margin-left: 8px;
+  padding-left: 25px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+  border-radius: 50%;
+  left: -31px;
+  top: 9px;
+}
+
+.timeline-date {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.timeline-item h3 {
+  font-size: 15px;
+  margin: 3px 0;
+}
+
+.timeline-item p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+/* 文章 */
+
+.article-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 5px 22px;
+}
+
+.article {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.article:last-child {
+  border: none;
+}
+
+.article a:hover {
+  color: var(--accent);
+}
+
+.article time {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* 页脚 */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 25px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* 返回顶部 */
+
+.top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  color: var(--accent);
+  display: none;
+}
+
+.top.show {
+  display: block;
+}
+
+/* 手机适配 */
+
+@media (max-width: 650px) {
+  .container {
+    padding: 0 18px;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  .profile {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+    gap: 15px;
+  }
+
+  .avatar {
+    width: 105px;
+    height: 105px;
+  }
+
+  .profile h1 {
+    font-size: 25px;
+  }
+
+  .interests,
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding-top: 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">PERSONAL / HOME</a>
+      <div class="nav-links">
+        <a href="#about">关于</a>
+        <a href="#interests">兴趣</a>
+        <a href="#projects">项目</a>
+        <a href="#articles">文章</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 个人介绍 -->
+
+  <div class="profile" id="about">
+
+    <!-- 将图片地址替换为自己的头像 -->
+    <img class="avatar"
+      src="https://placehold.co/300x300/e9edf2/315b87?text=ME"
+      alt="个人头像">
+
+    <div>
+      <h1>你的名字</h1>
+      <div class="subtitle">
+        Student · Research Enthusiast · Explorer
+      </div>
+
+      <div class="description">
+        你好，欢迎来到我的个人主页。
+        这里记录我的学习经历、研究兴趣、技术项目
+        以及一些关于科学与自然的思考。
+        <br>
+        保持好奇，持续探索。
+      </div>
+
+      <div class="social">
+        <a href="https://github.com/你的用户名"
+           target="_blank">GitHub ↗</a>
+
+        <a href="mailto:你的邮箱">Email ↗</a>
+
+        <a href="#projects">Projects ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 兴趣方向 -->
+
+  <section id="interests">
+    <div class="section-title">
+      Research & Interests
+      <span>兴趣方向</span>
+    </div>
+
+    <div class="interests">
+
+      <div class="interest-card">
+        <h3>地球科学</h3>
+        <p>
+          地质过程、地貌演化、自然地理与地球系统科学。
+        </p>
+      </div>
+
+      <div class="interest-card">
+        <h3>环境科学</h3>
+        <p>
+          环境变化、生态系统、污染控制与可持续发展。
+        </p>
+      </div>
+
+      <div class="interest-card">
+        <h3>计算与编程</h3>
+        <p>
+          数值计算、科学可视化、算法与网页开发。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 项目展示 -->
+
+  <section id="projects">
+    <div class="section-title">
+      Selected Projects
+      <span>项目展示</span>
+    </div>
+
+    <div class="projects">
+
+      <div class="project">
+        <h3>几何计算器</h3>
+        <p>
+          一个基于 JavaScript 的数学计算工具，
+          支持代数表达式解析与符号化简。
+        </p>
+        <a class="project-link"
+           href="你的项目链接" target="_blank">
+          View Project ↗
+        </a>
+      </div>
+
+      <div class="project">
+        <h3>科学笔记</h3>
+        <p>
+          整理学习过程中涉及的科学知识、
+          数学推导与相关资料。
+        </p>
+        <a class="project-link"
+           href="你的项目链接" target="_blank">
+          View Project ↗
+        </a>
+      </div>
+
+      <div class="project">
+        <h3>地球科学专题</h3>
+        <p>
+          关于地质、地貌与自然现象的
+          专题研究和科普内容。
+        </p>
+        <a class="project-link"
+           href="你的项目链接" target="_blank">
+          View Project ↗
+        </a>
+      </div>
+
+      <div class="project">
+        <h3>其他项目</h3>
+        <p>
+          记录其他值得展示的个人项目、
+          编程实验和探索成果。
+        </p>
+        <a class="project-link"
+           href="你的项目链接" target="_blank">
+          View Project ↗
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 经历 -->
+
+  <section id="experience">
+    <div class="section-title">
+      Project
+      <span>个人项目</span>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026 — Present</div>
+        <h3>合成NJU</h3>
+        <p><a href = "">2048小游戏改版。NJU=32768！</a></p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2023 — 2026</div>
+        <h3>xcxGeometry</h3>
+        <p><a href = "">解析几何工具箱，支持分式和根式运算</a></p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Earlier</div>
+        <h3>占位符</h3>
+        <p>占位符</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 文章 -->
+
+  <section id="articles">
+    <div class="section-title">
+      Writing & Notes
+      <span>文章与笔记</span>
+    </div>
+
+    <div class="article-list">
+
+      <div class="article">
+        <a href="文章链接1">关于柱状节理的形成机制</a>
+        <time>2026</time>
+      </div>
+
+      <div class="article">
+        <a href="文章链接2">一些关于地球科学的思考</a>
+        <time>2026</time>
+      </div>
+
+      <div class="article">
+        <a href="文章链接3">科学计算与数学笔记</a>
+        <time>2026</time>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 Your Name.
+    Built with HTML & CSS · Hosted on GitHub Pages
+  </div>
+</footer>
+
+<button class="top" id="topBtn"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  aria-label="返回顶部">↑</button>
+
+<script>
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    topBtn.classList.add("show");
+  } else {
+    topBtn.classList.remove("show");
+  }
+});
+</script>
+
+</body>
+</html>
